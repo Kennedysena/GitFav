@@ -130,7 +130,7 @@ tbody {
 }
 
 tbody::-webkit-scrollbar {
-  width: 0.1rem;
+  width: .4rem;
   cursor: pointer;
 }
 
