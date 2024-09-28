@@ -2,6 +2,8 @@ import { GithubUser } from "./GitHubUser.js";
 
 //classe que vai conter a lógica do dados
 // como os dados serão estruturados
+//class that will contain the data logic
+// how the data will be structured
 export class Favorites {
   constructor(root) {
     this.root = document.querySelector(root);
@@ -13,6 +15,8 @@ export class Favorites {
     this.entries = JSON.parse(localStorage.getItem("@github-favorites:")) || [];
     // localStorage é um local no navegador que armazena dados do usuário, como se fosse um bando de dados
     // guarda sempre no formato key e value
+    // localStorage is a location in the browser that stores user data, as if it were a database
+    // always saves in key and value format
   }
 
   save() {
@@ -41,8 +45,10 @@ export class Favorites {
       (entry) => entry.login !== user.login
     );
     // verifica se o login que eu quero apagar é diferente dos demais da lista, se for diferente os demais vão ao novo array
+    // checks if the login I want to delete is different from the others in the list, if it is different, the others go to the new array
     this.entries = filteredEntries;
     // após o filtro entries recebe um novo array no caso filteredEntries
+    // after the entries filter receives a new array in the filteredEntries case// after the entries filter receives a new array in the filteredEntries case
     this.update();
     this.save();
   }
@@ -51,7 +57,7 @@ export class Favorites {
 // classe que vai criar a visualização e eventos do HTML
 export class FavoritesView extends Favorites {
   constructor(root) {
-    super(root); // super vai chamar o construtor da classe 'Favorites'
+    super(root); // super vai chamar o construtor da classe 'Favorites'  // super will call the constructor of the 'Favorites' class
     this.tbody = this.root.querySelector("table tbody");
     this.update();
     this.onadd();
@@ -86,6 +92,7 @@ export class FavoritesView extends Favorites {
       row.querySelector(".followers").textContent = user.followers;
 
       row.querySelector(".remove").onclick = () => {
+        //remove the element (tr) i.e. the line in the case of the click event
         //remove o elemento (tr) ou seja a linha no caso do evento click
         const isOk = confirm("Tem certeza que quer deletar essa linha ?");
         if (isOk) {
@@ -131,6 +138,7 @@ export class FavoritesView extends Favorites {
 
   removeAllTr() {
     this.tbody.querySelectorAll("tr").forEach((tr) => {
+      //querySelectorAll gets all tr ​​i.e. all lines, forEach in the case for each one each one of them updates
       //querySelectorAll pega todos os tr ou seja todas as linhas, forEach no caso para cad um cada um deles atualiza
       tr.remove();
     });
